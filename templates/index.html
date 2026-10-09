@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Churn Prediction</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f4f6f9;
+        }
+
+        .card {
+            border-radius: 15px;
+        }
+
+        .risk-high {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .risk-low {
+            color: #198754;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+
+                <div class="card shadow p-4">
+                    <h3 class="text-center mb-4">Customer Churn Prediction</h3>
+
+                    <form method="POST">
+
+                        <div class="mb-3">
+                            <label class="form-label">Tenure (months)</label>
+                            <input type="number" name="tenure" class="form-control" placeholder="e.g. 12" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Monthly Charges</label>
+                            <input type="number" step="0.01" name="MonthlyCharges" class="form-control"
+                                placeholder="e.g. 70.50" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            Predict Churn Risk
+                        </button>
+                    </form>
+
+                    {% if prediction %}
+                    <hr>
+                    <div class="text-center">
+                        <h5>Prediction Result</h5>
+                        <p>{{ prediction }}</p>
+
+                        {% if risk == "High" %}
+                        <p class="risk-high">⚠ High Risk of Churn</p>
+                        {% else %}
+                        <p class="risk-low">✅ Low Risk of Churn</p>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+
+                </div>
+
+                <p class="text-center mt-3 text-muted">
+                    ML-powered churn prediction using customer behavior data
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
